@@ -80,6 +80,10 @@
             
             <li class="nav-item" data-level="1"><a href="#usage-revframe" class="nav-link">Usage | RevFrame</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#set-up" class="nav-link">Set Up</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-level="2"><a href="#how-to-use" class="nav-link">How to Use</a>
               <ul class="nav flex-column">
               </ul>
@@ -97,6 +101,20 @@
 
 <h1 id="usage-revframe">Usage | RevFrame</h1>
 <p>This framework will help in scaling Machine Learning/Deep Learning/Artificial Intelligence/Natural Language Processing Models to Web Application level almost without any time.</p>
+<h2 id="set-up">Set Up</h2>
+<ul>
+<li>
+<p><strong>Docker</strong>:<br>
+    Install docker, following official documentation based on your operating system.<br>
+    <a href="https://docs.docker.com/desktop/install/windows-install/" target="_blank">Windows</a>, <a href="https://docs.docker.com/desktop/install/linux-install/" target="_blank">Linux</a>, <a href="https://docs.docker.com/desktop/install/mac-install/" target="_blank">MacOS</a></p>
+<p>To have a hassle free docker experience, we need <code>docker compose</code>, which is already installed if you install docker, Visit for <a href="https://docs.docker.com/compose/install/" target="_blank">more</a></p>
+</li>
+<li>
+<p><strong>Python</strong> (Only if Python or PIP is not present in your system)</p>
+<p>Follow based on your OS<br>
+<a href="https://www.digitalocean.com/community/tutorials/install-python-windows-10" target="_blank">Windows</a>, <a href="https://www.digitalocean.com/community/tutorial_collections/how-to-install-python-3-and-set-up-a-programming-environment" target="_blank">Linux</a>, <a href="https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-macos" target="_blank">MacOS</a></p>
+</li>
+</ul>
 <h2 id="how-to-use">How to Use</h2>
 <ul>
 <li>Clone <code>revframe</code> - <a href="https://github.com/revanth-reddy/revframe">github link</a> using <code>git clone https://github.com/revanth-reddy/revframe.git</code></li>
@@ -116,10 +134,49 @@ Backend/
 
 docker-compose.yml  # This is a docker compose file that spins up Frontend &amp; Backend Containers
 </code></pre>
-<h4 id="now-build-the-containers-and-restart-using">Now build the containers and restart using:</h4>
+<ul>
+<li>Put your model that is ready for production or deployment inside model folder.</li>
+<li>In the model.py file make changes so that your model will be called using a command that is given inside os.system('').</li>
+<li>For example model.py would utilize your model with a command similar to<br>
+<code>os.system('python image_detect.py --input_path="path/to/input_image"    --output_path="path/to/output_image"')</code></li>
+<li>
+<p>Verify the changes and now you can run the RevFrame with or without Docker.</p>
+<h4 id="with-docker">With Docker</h4>
+<p>Now build the containers and restart using:</p>
 <ul>
 <li><code>docker compose build</code></li>
 <li><code>docker compose up</code></li>
+</ul>
+<h4 id="without-docker">Without Docker</h4>
+<ul>
+<li>
+<p><strong>Frontend</strong>:</p>
+<ul>
+<li>Change your working directory to <code>frontend</code>. </li>
+<li>Inside frontend directory, Create a virtual environment using <code>python -m venv myvenv</code>. [If you don't have virtual environment, install it from the above Python Setup]</li>
+<li>Activate virtual environment using <code>source myvenv/bin/activate</code>.</li>
+<li>Now upgrade pip to the latest using <code>pip install --upgrade pip</code></li>
+<li>Install necessary packages using <code>pip install -r requirements.txt</code>.</li>
+<li>Run frontend server using <code>python manage.py runserver</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Backend</strong></p>
+<ul>
+<li>In a new terminal open <code>backend</code> folder as your working directory.</li>
+<li>Inside backend directory, Create a virtual environment using <code>python -m venv myvenv</code>.</li>
+<li>Activate virtual environment using <code>source myvenv/bin/activate</code>.</li>
+<li>Now upgrade pip to the latest using <code>pip install --upgrade pip</code></li>
+<li>Install necessary packages using <code>pip install -r requirements.txt</code>.</li>
+<li>Add your model requirements to <code>requirements.txt</code></li>
+<li>Make changes to app.py and model.py if necessary to accomodate the new model that has been added.</li>
+<li>Run backend server using <code>flask run --host=0.0.0.0 --port=5001</code></li>
+</ul>
+</li>
+</ul>
+<p>Now visit <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> to see the frontend server's homepage.<br>
+Navigate to <a href="http://127.0.0.1:8000/model">http://127.0.0.1:8000/model</a> to see your model running.</p>
+</li>
 </ul></div>
             </div>
         </div>
